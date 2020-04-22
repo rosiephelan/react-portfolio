@@ -1,4 +1,5 @@
 import React from 'react';
+import Projects from '../components/Projects';
 
 class Body extends React.Component{
     constructor (props) {
@@ -6,24 +7,28 @@ class Body extends React.Component{
         this.state = {
         };
     };
-    static getDerivedStateFromProps() {
+
+    getApi= () => {
         let THIS = this;
-        fetch("http://www.omdbapi.com/?apikey=a2fe6869&&s=titanic")
-        .then(function (response) {
-            let json = response.json();
-            THIS.setState({data: json});
-        })
+        fetch("https://api.github.com/users/StevenB96/repos")
+        .then(response => response.json())
+        .then(json => THIS.setState({data: json}))
+        .then(console.log(this.state.data))
         .catch(error => console.log(error));
+    }
+
+    componentDidMount() {
+       this.getApi();
     };
+
     render() {
-        console.log(this.state.data)
         if (!this.state.data) {
             return (
-                <div>A</div>
+                <div>Loading...</div>
             )
         } else {
             return (
-                <div>B</div>
+                <Projects data={this.state.data} />
             )
         }
     }
