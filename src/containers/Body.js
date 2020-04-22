@@ -1,5 +1,6 @@
 import React from 'react';
 import Projects from '../components/Projects';
+import About from '../components/About';
 
 class Body extends React.Component{
     constructor (props) {
@@ -8,7 +9,7 @@ class Body extends React.Component{
         };
     };
 
-    getApi= () => {
+    getApi () {
         let THIS = this;
         fetch("https://api.github.com/users/StevenB96/repos")
         .then(response => response.json())
@@ -18,7 +19,7 @@ class Body extends React.Component{
     }
 
     componentDidMount() {
-       this.getApi();
+        this.getApi();
     };
 
     render() {
@@ -28,7 +29,10 @@ class Body extends React.Component{
             )
         } else {
             return (
-                <Projects data={this.state.data} />
+                <div style = {body}>
+                    <About data={this.state.data} />
+                    <Projects data={this.state.data} />
+                </div>
             )
         }
     }
@@ -36,4 +40,7 @@ class Body extends React.Component{
 
 export default Body;
 
+let body = {
+    margin: "0% 10%",
+}
 // https://api.github.com/users/StevenB96/repos

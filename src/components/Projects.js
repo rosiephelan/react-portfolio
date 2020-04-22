@@ -10,6 +10,7 @@ class Project extends React.Component {
 
         return (
             <div>
+                <h6>Projects</h6>
                 <ul>
                     {repoMap}
                 </ul>
