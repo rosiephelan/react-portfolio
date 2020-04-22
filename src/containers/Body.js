@@ -29,7 +29,7 @@ class Body extends React.Component{
             )
         } else {
             return (
-                <div style = {body}>
+                <div className="body">
                     <About data={this.state.data} />
                     <Projects data={this.state.data} />
                 </div>
@@ -40,7 +40,4 @@ class Body extends React.Component{
 
 export default Body;
 
-let body = {
-    margin: "0% 10%",
-}
 // https://api.github.com/users/StevenB96/repos
